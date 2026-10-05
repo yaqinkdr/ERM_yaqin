@@ -1,0 +1,32 @@
+# Data pasien & database
+patients.db
+patients.db-journal
+patients.json
+patients.json.migrated.bak
+penunjang/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+env/
+.venv/
+
+# Environment
+.env
+.env.local
+
+# Model cache (kalau ada di lokal)
+.cache/
+models/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
