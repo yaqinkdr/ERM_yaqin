@@ -1,6 +1,6 @@
 # 🏥 Local E-Rekam Medis yaqin
 
-Aplikasi rekam medis elektronik (ERM) lokal berbasis desktop untuk praktik mandiri dokter. Dibuat dengan Python + CustomTkinter, mendukung input suara (voice-to-text), penyimpanan SQLite, lampiran penunjang, dan export PDF.
+Aplikasi rekam medis elektronik (ERM) lokal berbasis desktop untuk praktik mandiri dokter, tapi lebih cocok untuk UKS dan Poskestren. Dibuat dengan Python + CustomTkinter, mendukung input suara (voice-to-text), penyimpanan SQLite, lampiran penunjang, dan export PDF.
 
 > **Author:** [@yaqinkdr](https://github.com/yaqinkdr)
 > **Year:** 2026
@@ -21,22 +21,13 @@ Aplikasi rekam medis elektronik (ERM) lokal berbasis desktop untuk praktik mandi
 
 ---
 
-## 📸 Tampilan
-
-_(tambahkan screenshot di sini, misalnya:)_
-```
-![Screenshot Aplikasi](docs/screenshot.png)
-```
-
----
-
 ## 🚀 Instalasi
 
 ### 1. Clone repository
 
 ```bash
-git clone https://github.com/yaqinkdr/local-erm.git
-cd local-erm
+git clone https://github.com/yaqinkdr/ERM_yaqin.git
+cd ERM_yaqin
 ```
 
 ### 2. (Opsional) Buat virtual environment
@@ -65,7 +56,7 @@ pip install customtkinter reportlab faster-whisper sounddevice numpy
 ### 4. Jalankan
 
 ```bash
-python erm_baru.py
+python erm_sqlite.py
 ```
 
 Saat pertama kali menggunakan fitur voice, model Whisper (`small`) akan diunduh otomatis (~500 MB) dan di-cache di `~/.cache/huggingface/`.
@@ -88,10 +79,13 @@ Untuk menghindari rate limit saat mengunduh model Whisper, set **Hugging Face To
 ```bash
 export HF_TOKEN=hf_xxxxxxxxxx
 ```
+**Hardcode di erm_sqlite.py**
+ubah bagian ini:
+```
+os.environ["HF_TOKEN"] = "tulis di sini"
+```
 
-> ⚠️ **Jangan hardcode token di source code**. Gunakan environment variable.
-
-### Cara pakai
+### Cara pakai transkripsi teks dari suara
 - **Tahan** tombol 🎤 di samping textbox Subjektif → mulai rekam
 - **Lepas** tombol → Whisper transkripsi otomatis dan masukkan ke S
 
@@ -100,8 +94,8 @@ export HF_TOKEN=hf_xxxxxxxxxx
 ## 📂 Struktur Data
 
 ```
-local-erm/
-├── erm_baru.py            # File utama aplikasi
+ERM_yaqin/
+├── erm_sqlite.py            # File utama aplikasi
 ├── patients.db            # Database SQLite (dibuat otomatis)
 ├── penunjang/             # Folder lampiran penunjang
 │   ├── 12345_20261005_073512.jpg
@@ -114,7 +108,7 @@ local-erm/
 **Tabel `patients`**
 | Kolom | Tipe | Keterangan |
 |---|---|---|
-| id | TEXT | Nomor ERM (primary key) |
+| id | TEXT | Nomor NIK (primary key, bisa nomor RM jika tidak erenan pakai NIK) |
 | name | TEXT | Nama pasien |
 
 **Tabel `soap`**
